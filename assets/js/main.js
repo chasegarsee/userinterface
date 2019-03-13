@@ -47,12 +47,9 @@
     menu.classList.toggle("menu--open");
   };
 
-  // Start Here: Create a reference to the ".menu" class
   const menu = document.querySelector(".menu");
-  // create a reference to the ".menu-button" class
 
   const menuButton = document.querySelector(".menu-button");
-  // Using your menuButton reference, add a click handler that calls toggleMenu
 
   menuButton.addEventListener("click", function() {
     toggleMenu();
@@ -198,25 +195,17 @@
     // Article not visible? Bail.
     if (!$body.hasClass("is-article-visible")) return;
 
-    // Add state?
     if (typeof addState != "undefined" && addState === true)
       history.pushState(null, null, "#");
 
-    // Handle lock.
-
-    // Already locked? Speed through "hide" steps w/o delays.
     if (locked) {
-      // Mark as switching.
       $body.addClass("is-switching");
 
-      // Deactivate article.
       $article.removeClass("active");
 
-      // Hide article, main.
       $article.hide();
       $main.hide();
 
-      // Show footer, header.
       $footer.show();
       $header.show();
 
@@ -235,30 +224,22 @@
       return;
     }
 
-    // Lock.
     locked = true;
 
-    // Deactivate article.
     $article.removeClass("active");
 
-    // Hide article.
     setTimeout(function() {
-      // Hide article, main.
       $article.hide();
       $main.hide();
 
-      // Show footer, header.
       $footer.show();
       $header.show();
 
-      // Unmark as visible.
       setTimeout(function() {
         $body.removeClass("is-article-visible");
 
-        // Window stuff.
         $window.scrollTop(0).triggerHandler("resize.flexbox-fix");
 
-        // Unlock.
         setTimeout(function() {
           locked = false;
         }, delay);
@@ -266,24 +247,20 @@
     }, delay);
   };
 
-  // Articles.
   $main_articles.each(function() {
     var $this = $(this);
 
-    // Close.
     $('<div class="close">Close</div>')
       .appendTo($this)
       .on("click", function() {
         location.hash = "";
       });
 
-    // Prevent clicks from inside article from bubbling.
     $this.on("click", function(event) {
       event.stopPropagation();
     });
   });
 
-  // Events.
   $body.on("click", function(event) {
     // Article visible? Hide.
     if ($body.hasClass("is-article-visible")) $main._hide(true);
@@ -292,7 +269,6 @@
   $window.on("keyup", function(event) {
     switch (event.keyCode) {
       case 27:
-        // Article visible? Hide.
         if ($body.hasClass("is-article-visible")) $main._hide(true);
 
         break;
@@ -303,29 +279,19 @@
   });
 
   $window.on("hashchange", function(event) {
-    // Empty hash?
     if (location.hash == "" || location.hash == "#") {
-      // Prevent default.
       event.preventDefault();
       event.stopPropagation();
 
-      // Hide.
       $main._hide();
-    }
-
-    // Otherwise, check for a matching article.
-    else if ($main_articles.filter(location.hash).length > 0) {
-      // Prevent default.
+    } else if ($main_articles.filter(location.hash).length > 0) {
       event.preventDefault();
       event.stopPropagation();
 
-      // Show article.
       $main._show(location.hash.substr(1));
     }
   });
 
-  // Scroll restoration.
-  // This prevents the page from scrolling back to the top on a hashchange.
   if ("scrollRestoration" in history) history.scrollRestoration = "manual";
   else {
     var oldScrollPos = 0,
@@ -342,13 +308,9 @@
       });
   }
 
-  // Initialize.
-
-  // Hide main, articles.
   $main.hide();
   $main_articles.hide();
 
-  // Initial article.
   if (location.hash != "" && location.hash != "#")
     $window.on("load", function() {
       $main._show(location.hash.substr(1), true);
