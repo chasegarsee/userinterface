@@ -2100,6 +2100,7 @@ body.is-preload #footer {
 /* CAROUSEL */
 
 .carousel {
+  padding: 100px;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -2112,7 +2113,7 @@ body.is-preload #footer {
 }
 @media (min-width: 1200px) {
   .carousel {
-    /* margin-top: 8%; */
+    padding: 100px;
   }
 }
 .carousel .left-button,
@@ -2124,7 +2125,7 @@ body.is-preload #footer {
   color: #fff;
   background-color: #333;
   font-size: 40px;
-  border-radius: 50%;
+  border-radius: 40%;
   position: absolute;
   width: 50px;
   height: 50px;
@@ -2138,33 +2139,25 @@ body.is-preload #footer {
 }
 .carousel .left-button {
   top: 50%;
-  left: 25px;
+  left: 5%;
   transform: translate(0, -50%);
 }
 .carousel .right-button {
   top: 50%;
-  right: 25px;
+  right: 5%;
   transform: translate(0, -50%);
 }
 .carousel img {
   width: 100%;
   display: none;
+  border-radius: 50px;
 }
 
 @media screen and (max-width: 1680px) {
-  .carousel {
-    /* margin-top: 17%; */
-  }
 }
 
 @media screen and (max-width: 736px) {
-  .carousel {
-    /* margin-top: 50%; */
-  }
 }
 
 @media screen and (max-width: 450px) {
-  .carousel {
-    /* margin-top: ; */
-  }
 }
